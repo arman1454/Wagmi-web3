@@ -7,7 +7,7 @@ import { cookieToInitialState } from 'wagmi'
 
 import { getConfig } from '../wagmi'
 import { Providers } from './providers'
-
+import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -23,7 +23,16 @@ export default function RootLayout(props: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers initialState={initialState}>{props.children}</Providers>
+        <ThemeProvider attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+        <Providers initialState={initialState}>
+          
+            {props.children}
+          
+        </Providers>
+      </ThemeProvider>
       </body>
     </html>
   )
